@@ -1,5 +1,8 @@
 import './style.css'
 
+import {Button} from './components'
+
+
 console.log("Loading scripts..")
 
 document.addEventListener("DOMContentLoaded", () => {
