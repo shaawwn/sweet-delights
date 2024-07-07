@@ -9,19 +9,11 @@ class Button extends HTMLElement {
       this.button = button
       button.innerText = innerText;
       this.appendChild(button);
+
+      this.button.classList.add('button')
     }
 
-    addClickEvent(func) {
-        this.button.addEventListener('click', () => {
-            func()
-        })
-    }
 
-    addHoverEvent(func) {
-        this.button.addEventListener('hover', () => {
-            func()
-        })
-    }
   }
   
   
