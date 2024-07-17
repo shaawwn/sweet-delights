@@ -1,3 +1,3 @@
 <!-- # webpack-tailwind-template -->
 
-Basic template for a website using Webpack and Tailwind. 
+Mock website for a Bakery that doesn't exist.
