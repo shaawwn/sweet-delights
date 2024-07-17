@@ -5,7 +5,7 @@ import TwitterLogo from '../assets/images/twitter.png'
 import Logo from '../assets/images/simplelogo.png'
 
 class Footer {
-    super() {
+    constructor() {
 
     }
 
@@ -35,7 +35,6 @@ class Footer {
         footer.appendChild(footerContainer)
         footer.appendChild(copyright)
     }
-
 
 
     logo() {
@@ -174,22 +173,10 @@ class Footer {
     }
 }
 
-
 function _checkMobile() {
     return window.innerWidth < 764
 }
 
-function scrollToTopButton() {
-    // on "Back to top", snap back to the top fo the page
-    const button  = document.createElement('button')
-    button.innerText = 'Back to top'
-
-    button.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    })
-
-    return button
-}
 export {
     Footer
 }
