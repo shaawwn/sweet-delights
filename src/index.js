@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function loadElements() {
     addLogo(Logo)
     checkMobile()
+    navbarDropdown()
     handleScreenResize()
     addHeroContent(HeroHeader, Hero)
     addAnnouncementSection('New cupcakes coming next week!')
@@ -87,6 +88,10 @@ function hideNavLinks() {
     const hamburger = document.getElementById('navbar-menu')
     navLinks.style.display = "none"
     hamburger.style.display = 'block'
+    hamburger.addEventListener('click', () => {
+        console.log("Clicking hamburger")
+        toggleNavbarDropdown()
+    })
 }
 
 function showNavLinks() {
@@ -94,11 +99,50 @@ function showNavLinks() {
     const hamburger = document.getElementById('navbar-menu')
     navLinks.style.display = "flex"
     hamburger.style.display = 'none'
+
+}
+
+function toggleNavbarDropdown() {
+    console.log("clicking")
+    const dropdown = document.getElementsByClassName('navbar__dropdown')[0]
+
+    const hamburger = document.getElementById('menu-hamburger')
+    const close = document.getElementById('menu-cross')
+
+    if(dropdown.style.display === 'none') {
+        dropdown.style.display = 'flex'
+        hamburger.style.display = 'none'
+        close.style.display = 'flex'
+
+    } else {
+        dropdown.style.display = 'none'
+        close.style.display = 'none'
+        hamburger.style.display = 'flex'
+    }
+}
+
+function navbarDropdown() {
+    const navbar = document.getElementById('navbar')
+    const container = document.createElement('div')
+    container.classList.add('navbar__dropdown')
+
+    const links = ["Home", "Menu", "About", "Contact", "Order"]
+
+    links.forEach((link) => {
+        const l = document.createElement('a')
+        l.href="#"
+        l.classList.add('navbar__dropdown__link')
+        l.innerText = link
+        container.appendChild(l)
+    })
+
+    navbar.appendChild(container)
+    // return container
 }
 
 function addHeroContent(header, image) {
     const hero = document.getElementById('hero')
-
+    hero.style.paddingTop = '100px'
     const titleContainer = document.createElement('div')
     titleContainer.classList.add('pl-6', 'pr-6')
     const titleLogo = document.createElement('img')
@@ -223,7 +267,6 @@ function imageAndText() {
 function addReviewSection() {
     const yelp = new YelpEmbed()
     yelp.render()
-    // document.body.appendChild(yelp.render())
 }
 
 function addMapAndDirections() {
@@ -238,95 +281,8 @@ function addFooter() {
     const footer = new Footer()
     footer.render()
 }
-// function addFooter() {
-//     const footer = document.getElementById('footer')
-//     footer.classList.add('footer', 'flex', 'body-padding')
-
-//     const linksContainer = document.createElement('div')
-//     const hoursContainer = document.createElement('div')
-//     const columnContainer = document.createElement('div')
-//     const CTAContainer = document.createElement('div')
-//     const socialsContainer = document.createElement('div')
-
-//     linksContainer.classList.add('flex', 'flex-col')
-//     hoursContainer.classList.add('flex', 'flex-col')
-//     columnContainer.classList.add('flex', 'flex-col')
-//     // CTAContainer.classList.add('flex', 'flex-col')
-//     socialsContainer.classList.add('flex')
-    
-//     const links = ['Back to top', 'Blog', 'About', 'Contact', 'Order Online']
-
-//     const hours = [
-//         {'Monday': '7:00am - 3:00pm'},
-//         {'Tuesday': 'CLOSED'},
-//         {'Wednesday': '7:00am - 3:00pm'},
-//         {'Thursday': '7:00am - 3:00pm'},
-//         {'Friday': '7:00am - 3:00pm'},
-//         {'Saturday': '7:00am - 3:00pm'},
-//         {'Sunday': '7:00am - 3:00pm'},
-//     ]
-//     links.forEach((link, index) => {
-//         const a = document.createElement('a')
-//         a.href="#"
-//         a.innerText = link
-//         linksContainer.appendChild(a)
-//     })
-
-//     hours.forEach((item) => {
-//         const hoursRow = document.createElement('div')
-//         const day = document.createElement('p')
-//         const time = document.createElement('p')
-
-//         day.innerText = Object.keys(item)[0]
-//         time.innerText = item[Object.keys(item)]
-        
-//         hoursRow.appendChild(day)
-//         hoursRow.appendChild(time)
-//         hoursRow.classList.add('flex', 'justify-between')
-//         hoursContainer.appendChild(hoursRow)
-//     })
-
-//     const ctaTitle = document.createElement('p')
-//     ctaTitle.innerText = 'Stay up to date'
-
-//     const ctaForm = document.createElement('div')
-//     const ctaInput = document.createElement('input')
-//     const ctaButton = document.createElement('button')
-
-//     ctaInput.placeholder = 'Subscribe to newsletter'
-//     ctaButton.innerText = 'Subscribe'
-//     ctaForm.appendChild(ctaInput)
-//     ctaForm.appendChild(ctaButton)
-
-//     CTAContainer.appendChild(ctaForm)
-//     columnContainer.appendChild(CTAContainer)
-    
-//     const logos = [InstaLogo, FacebookLogo, TwitterLogo, TikTokLogo]
-
-//     logos.forEach((logo) => {
-//         const container = document.createElement('div')
-//         const img = document.createElement('img')
-//         img.src = logo
-
-//         container.appendChild(img)
-//         socialsContainer.appendChild(container)
-//     })
-
-//     columnContainer.appendChild(socialsContainer)
-//     const logo = document.createElement('img')
-    
 
 
-//     logo.classList.add('footer__logo')
-//     logo.src = Logo
-
-//     footer.appendChild(logo)
-//     footer.appendChild(linksContainer)
-//     footer.appendChild(hoursContainer)
-//     footer.appendChild(columnContainer)
-
-// }
-// Util functions
 function _checkMobile() {
     return window.innerWidth < 764
 }
